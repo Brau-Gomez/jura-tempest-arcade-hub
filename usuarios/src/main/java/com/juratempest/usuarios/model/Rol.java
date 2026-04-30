@@ -1,34 +1,38 @@
 package com.juratempest.usuarios.model;
 
-import java.util.UUID;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "roles") // Especifica el nombre de la tabla en la base de datos que se mapeará a esta clase.
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Rol {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", columnDefinition = "BINARY(16)", nullable = false, updatable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "name", nullable = false, unique = true, length = 30)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "description", length = 150)
+    @Column
     private String description;
+
+    @OneToMany(mappedBy = "usuarios")
+    @JsonIgnore
+    private List<Usuario> usuarios;
+
+    
 }
