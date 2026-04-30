@@ -7,7 +7,7 @@ import com.juratempest.usuarios.model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
+    //Agregar comentarios
     Usuario findByEmail(String email);
     
     boolean existsByUsername(String username);

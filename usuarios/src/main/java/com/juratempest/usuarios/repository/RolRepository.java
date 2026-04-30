@@ -7,6 +7,7 @@ import com.juratempest.usuarios.model.Rol;
 
 public interface RolRepository extends JpaRepository<Rol, Long> {
 
+    //Revisar despues!!!!
     Optional<Rol> findByName(String name);
 
     boolean existsByName(String name);
