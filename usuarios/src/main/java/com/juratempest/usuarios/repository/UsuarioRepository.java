@@ -1,17 +1,18 @@
 package com.juratempest.usuarios.repository;
 
-import java.util.Optional;
-import java.util.UUID;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.juratempest.usuarios.model.Usuario;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    public Usuario findByEmail(String email);
+    Usuario findByEmail(String email);
     
     boolean existsByUsername(String username);
+    
+    boolean existByemail(String email);
 
-    Optional<Usuario> findByUsernameAndActiveTrue(UUID id);
+
 }
